@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+int n,sum = 0;
+vector<ll> a;
+int dp[105][105];
+int f(int i , int v){
+    if (i == n) return abs((sum -v)- v);
+    int& ret = dp[i][v];
+    if (~ret) return dp[i][v];
+    int pic = f(i+1,v+a[i]);
+    int leave = f(i+1,v);
+    return ret = min(pic,leave);
+}
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int t;cin >> t;
+    while (t--) {
+        cin >> n;
+        memset(dp, -1, sizeof(dp));
+        a.resize(n);
+        for (auto &x: a) {
+            cin >> x;
+            sum += x;
+        }
+        cout << f(0,0) << endl;
+    }
+    return 0;
+}
