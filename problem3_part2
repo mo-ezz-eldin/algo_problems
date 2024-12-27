@@ -1,0 +1,41 @@
+#include <iostream>
+#include <vector>
+#include <set>
+#include<vector>
+using namespace std;
+bool ValidPath(int n, vector<pair<int, int>>& edges, int source, int destination){
+set<int>neighbours;
+for(auto it=edges.begin();it!=edges.end();it++){
+    if(it->first==source){
+       neighbours .insert(it->second);
+        auto next_it=it;
+        next_it++;
+        if(it->second == next_it->first){
+            neighbours.insert(next_it->second);
+        }
+
+    }
+    if(it->second==source){
+        neighbours.insert(it->first);
+    }
+}
+if(neighbours.find(destination)!= neighbours.end())
+    return true;
+
+else
+    return false;
+}
+
+int main(){
+  int numVertices = 3;
+    vector<pair<int, int>> edges = {{0, 1}, {0, 2}, {3, 5},{5,4},{4,3}};
+    int source = 3, destination = 5;
+
+    if (ValidPath(numVertices, edges, source, destination)) {
+        cout << "true" << endl;
+    } else {
+        cout << "false" << endl;
+    }
+
+return 0;
+}
