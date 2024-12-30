@@ -32,11 +32,9 @@ int f(int i, int t, vector<pair<int, int>>& taken) {
 }
 
 int main() {
-    int tst = 1;
-    // cin >> tst;
-    while (tst--) {
-        int t;
-        cin >> t >> w >> n;
+    int t;
+    while (cin >> t >> w) {
+        cin >> n;
         memset(dp, -1, sizeof dp);
         v.resize(n);
 
@@ -49,6 +47,7 @@ int main() {
         for (const auto& p : taken) {
             cout << p.first << " " << p.second el;
         }
+         cout << "\n";
     }
     return 0;
 }
